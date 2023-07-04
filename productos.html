@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Listar Clientes</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <style>
+    
+        
+        .btn-animate {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .btn-animate:hover {
+            transform: scale(1.1);
+            /* Aumenta el tamaño del botón */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            /* Agrega una sombra */
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header">
+        <!-- Coloca la barra de navegación aquí -->
+    </header>
+    <main>
+        <div id="app" class="container">
+            <h1>Clientes</h1>
+            <br>
+            <!-- <a class="btn btn-primary" href="producto-create.html">Nuevo</a> -->
+            <!-- <a class="btn btn-primary btn-animate" href="producto-create.html">Nuevo</a> -->
+            <a class="btn btn-primary animate__animated animate__heartBeat btn-animate" href="producto-create.html">Nuevo</a>
+            <br><br>
+            <div v-if="error">
+                <p>Lo sentimos, ha ocurrido un error.</p>
+            </div>
+            <div v-else>
+                <section v-if="cargando">
+                    <div class="spinner-border"></div>
+                    <p>Cargando...</p>
+                </section>
+                <section v-else>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Apellido</th>
+                                    <th scope="col">Direccion</th>
+                                    <th scope="col">Codigo Postal</th>
+                                    <th scope="col">Localidad</th>
+                                    <th scope="col">Telefono</th>
+                                    <th scope="col">Mail</th>
+                                    <th scope="col">Fecha Nac.</th>
+                                    <th scope="col">Sexo</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Iterar sobre cada producto -->
+                                <tr class="" v-for="producto in productos">
+                                    <td scope="row">{{producto.id}}</td>
+                                    <td>{{producto.nombre}}</td>
+                                    <td>{{producto.apellido}}</td>
+                                    <td>{{producto.direccion}}</td>
+                                    <td>{{producto.codpostal}}</td>
+                                    <td>{{producto.localidad}}</td>
+                                    <td>{{producto.telefono}}</td>
+                                    <td>{{producto.mail}}</td>
+                                    <td>{{producto.fechanac}}</td>
+                                    <td>{{producto.sexo}}</td>
+                                    
+                                    <td>
+                                        <!-- Botón para editar el producto -->
+                                        <a class="btn btn-primary"
+                                            :href="'producto-update.html?id='+ producto.id">Editar</a>
+                                        <!-- Botón para eliminar el producto -->
+                                        <button type="button" class="btn btn-danger"
+                                            v-on:click="eliminar(producto.id)">Eliminar</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <!-- Coloca aquí el contenido del pie de página -->
+    </footer>
+    <!-- Enlace de Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+        crossorigin="anonymous"></script>
+    <script src="./js/main.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script><!--Enlace de VUE-->
+    <script src="./js/productos.js"></script>
+</body>
+
+</html>
